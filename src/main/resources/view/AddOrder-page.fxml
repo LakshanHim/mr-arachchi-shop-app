@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootOrderDetail" prefHeight="452.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Arachchi.controller.AddOrderController">
+   <children>
+      <Label layoutX="28.0" layoutY="55.0" text="Enter the customer name:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="98.0" text="Order Type:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtName" layoutX="216.0" layoutY="52.0" style="-fx-background-radius: 5;" />
+      <TextField fx:id="txtType" layoutX="216.0" layoutY="95.0" style="-fx-background-radius: 5;" />
+      <Label layoutX="28.0" layoutY="143.0" text="Contact Information:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtEmail" layoutX="216.0" layoutY="140.0" promptText="Email" style="-fx-background-radius: 5;" />
+      <TextField fx:id="txtPhone" layoutX="215.0" layoutY="174.0" promptText="Phone no" style="-fx-background-radius: 5;" />
+      <Label layoutX="28.0" layoutY="252.0" prefWidth="138.0" text="Payment Status:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txtNotes" layoutX="216.0" layoutY="284.0" prefHeight="94.0" prefWidth="170.0" />
+      <TextField fx:id="txtStatus" layoutX="216.0" layoutY="249.0" promptText="pending or paid" style="-fx-background-radius: 5;" />
+      <Label layoutX="28.0" layoutY="284.0" prefWidth="138.0" text="Order Notes:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="145.0" layoutY="14.0" text="Order Details">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Button layoutX="171.0" layoutY="394.0" mnemonicParsing="false" onAction="#btnSubmit" styleClass="submitButton" stylesheets="@style.css" text="Submit" />
+      <DatePicker fx:id="datePicker" layoutX="213.0" layoutY="213.0" />
+      <Label layoutX="28.0" layoutY="216.0" prefWidth="138.0" text="Date:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
