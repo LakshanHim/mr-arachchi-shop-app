@@ -20,6 +20,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
 
 <BorderPane prefHeight="849.0" prefWidth="1582.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Arachchi.controller.DashPageController">
 
@@ -70,7 +71,7 @@
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font></Button>
-            <Button alignment="TOP_LEFT" onAction="#btnSuppliers" prefHeight="40.0" prefWidth="209.0" style="-fx-text-fill: white; -fx-background-color: null;" text="🚚 Suppliers">
+            <Button alignment="TOP_LEFT" onAction="#btnSuppliers" prefHeight="40.0" prefWidth="209.0" style="-fx-text-fill: white; -fx-background-color: null;" text="🚚 Packages">
                 <VBox.margin>
                     <Insets left="50.0" />
                 </VBox.margin>
@@ -166,11 +167,14 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <TextArea prefHeight="67.0" prefWidth="294.0" promptText="Title: &quot;Low Stock Alert&quot;Message: &quot;The stock for [Item Name] is running low. Only [Quantity] items are left. Please restock soon to avoid any delays.&quot;">
+            <TextFlow fx:id="txtLowBox" prefHeight="87.0" prefWidth="314.0" styleClass="box" stylesheets="@style.css">
                <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
-            </TextArea>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </TextFlow>
             <Label layoutX="20.0" layoutY="189.0" text="🗓Appointment Reminders" textFill="#f71f1f">
                <font>
                   <Font name="System Bold" size="16.0" />
@@ -179,7 +183,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <TextArea layoutX="20.0" layoutY="236.0" prefHeight="67.0" prefWidth="294.0" promptText="Title: &quot;Upcoming Appointment&quot;Message: &quot;You have an appointment scheduled on [Date] at [Time]. Please make sure to attend on time.&quot;">
+            <TextArea fx:id="txtRemender" layoutX="20.0" layoutY="236.0" prefHeight="67.0" prefWidth="294.0" promptText="Title: &quot;Upcoming Appointment&quot;Message: &quot;You have an appointment scheduled on [Date] at [Time]. Please make sure to attend on time.&quot;">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </VBox.margin>
@@ -228,25 +232,29 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
                <children>
-                  <Label text="Total Orders:">
+                  <Label fx:id="getOrders" text="Total Orders:">
                      <VBox.margin>
                         <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="10.0" text="Total items:">
+                  <Label fx:id="getRevenue" layoutX="10.0" layoutY="28.0" text="Total Revenue:">
                      <VBox.margin>
                         <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="28.0" text="Total Revenue:">
+                  <Label fx:id="getItem" layoutX="10.0" layoutY="10.0" text="Total items:">
                      <VBox.margin>
                         <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                      </VBox.margin>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="45.0" text="Label">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
-                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
                   </Label>
                </children>
             </VBox>
@@ -316,28 +324,28 @@
                               <VBox prefHeight="116.0" prefWidth="260.0" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10;" styleClass="box" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                  <children>
                                     <Label style="-fx-font-size: 14; -fx-text-fill: #666;" text="Daily Sales" />
-                                    <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="2,584" />
+                                    <Label fx:id="dSales" style="-fx-font-size: 24; -fx-font-weight: bold;" text="2,584" />
                                     <Label prefHeight="18.0" prefWidth="128.0" style="-fx-font-size: 12; -fx-text-fill: #4CAF50;" text="+12.5% from yesterday" />
                                  </children>
                               </VBox>
                               <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" styleClass="box" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                  <children>
                                     <Label style="-fx-font-size: 14; -fx-text-fill: #666;" text="Total Orders" />
-                                    <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="45" />
+                                    <Label fx:id="tOrders" style="-fx-font-size: 24; -fx-font-weight: bold;" text="45" textFill="#df0b0b" />
                                     <Label style="-fx-font-size: 12; -fx-text-fill: #2196F3;" text="8 pending orders" />
                                  </children>
                               </VBox>
                               <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" styleClass="box" GridPane.columnIndex="2" GridPane.rowIndex="0">
                                  <children>
-                                    <Label style="-fx-font-size: 14; -fx-text-fill: #666;" text="Most Popular" />
-                                    <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="Mojito" />
-                                    <Label style="-fx-font-size: 12; -fx-text-fill: #FF9800;" text="85 orders today" />
+                                    <Label style="-fx-font-size: 14; -fx-text-fill: #666;" text="Appointments" />
+                                    <Label fx:id="getAppoiment" style="-fx-font-size: 24; -fx-font-weight: bold;" text="Mojito" />
+                                    <Label style="-fx-font-size: 12; -fx-text-fill: #FF9800;" text="Upcoming Appointments" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="122.0" prefWidth="246.0" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" styleClass="box" GridPane.columnIndex="3" GridPane.rowIndex="0">
                                  <children>
                                     <Label style="-fx-font-size: 14; -fx-text-fill: #666;" text="Low Stock Items" />
-                                    <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="3" />
+                                    <Label fx:id="lItem" style="-fx-font-size: 24; -fx-font-weight: bold;" text="3" textFill="#d10b0b" />
                                     <Label style="-fx-font-size: 12; -fx-text-fill: #E53935;" text="Requires attention" />
                                  </children>
                               </VBox>

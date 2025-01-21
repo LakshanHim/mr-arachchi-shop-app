@@ -250,12 +250,21 @@ public class OrderController {
 
         Button viewBtn = new Button("View");
         viewBtn.setStyle("-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-padding: 8 20; -fx-background-radius: 5;");
-
         viewBtn.setOnAction(e -> showDetails(id, itemName, type, phone, email, status, note, selectedDate));
+
+        Button deleteBtn = new Button("Delete");
+        deleteBtn.setStyle("-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-padding: 8 20; -fx-background-radius: 5;");
+        deleteBtn.setOnAction(e -> {
+            try {
+                deleteOrder(id);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         Region footerSpacer = new Region();
         HBox.setHgrow(footerSpacer, Priority.ALWAYS);
-        footer.getChildren().addAll(footerSpacer, viewBtn);
+        footer.getChildren().addAll(viewBtn, footerSpacer, deleteBtn);
 
         card.getChildren().addAll(header, name, serviceType, date, footer);
 
@@ -264,6 +273,26 @@ public class OrderController {
 
         return card;
     }
+
+    private void deleteOrder(int orderId) throws Exception {
+        try {
+            // Delete the order from the database
+            Connection connection = DBConnection.getDBConnection().getConnection();
+            String query = "DELETE FROM addorder WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, orderId);
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                initialize();
+            } else {
+                System.out.println("Order deletion failed.");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void showDetails(int id, String itemName, String type, String phone, String email, String status, String note, LocalDate selectedDate) {
         Stage detailStage = new Stage();
@@ -286,8 +315,6 @@ public class OrderController {
         detailStage.setScene(detailScene);
         detailStage.show();
     }
-
-
 }
 
 
