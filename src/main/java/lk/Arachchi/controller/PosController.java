@@ -604,7 +604,7 @@ public class PosController {
 
     private double calculateSubtotal(ArrayList<BillDetailDto> items) {
         return items.stream()
-                .mapToDouble(item -> item.getQty() * item.gettPrice())
+                .mapToDouble(item -> item.gettPrice())
                 .sum();
     }
 

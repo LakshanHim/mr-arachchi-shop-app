@@ -8,6 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -15,6 +18,7 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
@@ -29,6 +33,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class DashPageController {
@@ -72,7 +77,11 @@ public class DashPageController {
     private TextArea txtRemender;
 
     @FXML
+    private BarChart<String, Number> lineChart;
+
+    @FXML
     public void initialize() throws SQLException, ClassNotFoundException {
+        setLineChart();
         loadTodaysOrders();
         // Fast scrolling logic
         scrollPanePage.addEventFilter(ScrollEvent.SCROLL, event -> {
@@ -114,7 +123,7 @@ public class DashPageController {
 
         // Create formatted text with red, bold font
         Text styledText = new Text(lowStockNames.toString());
-        styledText.setFill(javafx.scene.paint.Color.RED); // Set font color to red
+        styledText.setFill(Color.RED); // Set font color to red
         styledText.setStyle("-fx-font-weight: bold;"); // Set font to bold
 
         // Add the styled text to the TextFlow
@@ -126,6 +135,53 @@ public class DashPageController {
         setFromBill();
         setTodayTotalOrders();
     }
+
+    public void setLineChart() throws SQLException {
+        lineChart.setTitle("Total Amounts for the Last 5 Days");
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Total Amount");
+
+        // Database resources
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        // Calculate the date range (last 5 days)
+        LocalDate today = LocalDate.now();
+        LocalDate startDate = today.minusDays(5); // 5 days ago (not including today)
+
+        try {
+            // SQL query to fetch totalAmount for the last 5 days (excluding today)
+            String query = "SELECT orderDate, SUM(totalAmount) AS total FROM bill " +
+                    "WHERE orderDate >= ? AND orderDate < ? " +  // Filter dates within the last 5 days
+                    "GROUP BY orderDate ORDER BY orderDate ASC";
+
+            // Database connection and execution
+            connection = DBConnection.getDBConnection().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, startDate.toString());  // Set the start date (5 days ago)
+            preparedStatement.setString(2, today.toString());     // Set today's date (exclusive)
+
+            resultSet = preparedStatement.executeQuery();
+
+            // Process the result set and add data to the series
+            while (resultSet.next()) {
+                // Convert the orderDate to LocalDate
+                LocalDate date = resultSet.getDate("orderDate").toLocalDate();
+                double totalAmount = resultSet.getDouble("total");
+
+                // Add data to the series
+                series.getData().add(new XYChart.Data<>(date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), totalAmount));
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        // Add the series to the LineChart
+        lineChart.getData().clear();  // Clear any previous data
+        lineChart.getData().add(series);
+    }
+
+
 
     public void setFromBill() {
         double totalRevenue=0;
@@ -164,6 +220,8 @@ public class DashPageController {
             e.printStackTrace();
         }
     }
+
+
 
     public void setTodayTotalOrders() {
         int totalOrders = 0;  // Initialize the count for total orders
