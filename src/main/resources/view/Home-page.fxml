@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Arachchi.controller.HomeController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="84.0" prefWidth="822.0" style="-fx-background-radius: 10;" styleClass="box1" stylesheets="@style.css" BorderPane.alignment="CENTER">
@@ -54,13 +53,18 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="30.0" layoutY="30.0" text="0.0">
+                        <Label fx:id="dailSale" layoutX="30.0" layoutY="30.0" text="0.0">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
+                        </Label>
+                        <Label prefHeight="24.0" prefWidth="145.0" text="+12.5% form yesterday" textFill="#74f266">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                      <GridPane.margin>
@@ -77,13 +81,18 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="0.0">
+                        <Label fx:id="totalOrders" text="0.0">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
+                        </Label>
+                        <Label prefHeight="24.0" prefWidth="145.0" text="8 pending orders" textFill="#4473ea">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                      <padding>
@@ -100,13 +109,18 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="0.0">
+                        <Label fx:id="appointment" text="0.0">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
+                        </Label>
+                        <Label prefHeight="24.0" prefWidth="157.0" text="Upcoming Appointment" textFill="#ecc02d">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                      <GridPane.margin>
@@ -123,13 +137,18 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="0.0">
+                        <Label fx:id="lowStockItem" text="0.0">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
+                        </Label>
+                        <Label prefHeight="24.0" prefWidth="157.0" text="Requires attention" textFill="#eb2f2f">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                      <GridPane.margin>
@@ -161,7 +180,7 @@
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis side="LEFT" />
+                            <NumberAxis fx:id="graph" side="LEFT" />
                           </yAxis>
                         </LineChart>
                      </children>

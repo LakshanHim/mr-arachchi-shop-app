@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="561.0" prefWidth="532.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Arachchi.controller.AddPackageController">
+   <children>
+      <TextField fx:id="txtPackageName" layoutX="181.0" layoutY="77.0" prefHeight="36.0" prefWidth="316.0" />
+      <TextArea fx:id="txtAdditionalItems" layoutX="181.0" layoutY="128.0" prefHeight="196.0" prefWidth="316.0" />
+      <TextField fx:id="txtPrice" layoutX="181.0" layoutY="384.0" prefHeight="36.0" prefWidth="316.0" />
+      <TextField fx:id="txtCoverageTime" layoutX="181.0" layoutY="334.0" prefHeight="36.0" prefWidth="316.0" />
+      <Button layoutX="181.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnSavePackage" prefHeight="46.0" prefWidth="316.0" text="ADD" />
+      <Label layoutX="24.0" layoutY="85.0" text="Package Name">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="392.0" text="Price">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="342.0" text="Coverage Time">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="206.0" text="Additional Items">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

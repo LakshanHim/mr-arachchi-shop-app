@@ -17,6 +17,7 @@
    <top>
       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="906.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
+            <Button mnemonicParsing="false" onAction="#btnRefresh" prefHeight="36.0" prefWidth="51.0" styleClass="refresh-button" stylesheets="@style.css" text="🔄" />
             <TextField fx:id="txtSearch" onAction="#search" prefHeight="39.0" prefWidth="684.0" promptText="Search...." style="-fx-background-radius: 10;">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

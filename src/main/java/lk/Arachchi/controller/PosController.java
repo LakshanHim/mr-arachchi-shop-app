@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.print.Printer;
 import javafx.print.PrinterJob;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -141,11 +142,13 @@ public class PosController {
 
                 if (isOrderPlaced) {
                     // Display success alert to the user
+
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Payment Successful");
                     alert.setHeaderText("Payment Completed");
                     alert.setContentText("The bill has been paid successfully and saved to the database.");
                     alert.showAndWait();
+
                 } else {
                     // Display error alert to the user
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -314,6 +317,32 @@ public class PosController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void btnRefresh(ActionEvent event) {
+        // Clear the bill details from the table
+        tblBill.getItems().clear();
+
+        // Reset the subtotal and balance fields
+        subTotal.setText("Subtotal: 0.00");
+        subBalance.setText("Balance: 0.00");
+
+        // Clear the text fields for balance and search
+        txtBalancce.clear();
+        txtSearch.clear();
+
+        // Reset the bill detail DTO list
+        billDetailDtos.clear();
+
+        // Optionally reload the items or reset any other necessary fields
+        cardGrid.getChildren().clear();
+        loadCards(); // Assuming this method reloads your card/grid items
+
+        // Reset the total variable if needed (if you're storing it separately)
+        Total = 0;
+        balance = 0;
+    }
+
 
     private void loadCards() {
         try {

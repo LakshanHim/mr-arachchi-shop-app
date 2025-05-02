@@ -1,11 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="718.0" prefWidth="886.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Arachchi.controller.SupplierController">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Photography Packages">
+                     <font>
+                        <Font name="System Bold" size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="74.0" prefWidth="886.0" spacing="20.0">
+               <children>
+                  <ComboBox fx:id="select" prefHeight="46.0" prefWidth="221.0" promptText="Select your package">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ComboBox>
+                  <TextField fx:id="txtSearch" onAction="#btnSearch" prefHeight="48.0" prefWidth="436.0" style="-fx-background-radius: 10;" />
+                  <Button mnemonicParsing="false" onAction="#btnAddPackage" prefHeight="46.0" prefWidth="114.0" style="-fx-background-radius: 10;" text="Add Package">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#btnRefresh" prefHeight="50.0" prefWidth="49.0" styleClass="refresh-button" stylesheets="@style.css" text="🔄" />
+               </children>
+            </HBox>
+            <TableView fx:id="tblItem" prefHeight="548.0" prefWidth="886.0">
+              <columns>
+                <TableColumn prefWidth="57.0" text="Id" />
+                  <TableColumn prefWidth="279.0" text="Package_Name" />
+                  <TableColumn prefWidth="280.0" text="Additional_Items" />
+                  <TableColumn prefWidth="137.0" text="Coverage_Time" />
+                  <TableColumn prefWidth="128.0" text="Price" />
+              </columns>
+            </TableView>
+         </children></VBox>
    </center>
 </BorderPane>

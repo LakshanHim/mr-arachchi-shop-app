@@ -79,6 +79,20 @@ public class DashPageController {
     @FXML
     private BarChart<String, Number> lineChart;
 
+    public void refreshPage() {
+        // Reload your table data, reset forms, update UI elements, etc.
+        loadDataToTable();
+        updateDashboardValues();
+    }
+
+    private void loadDataToTable() {
+        // Logic to load table data
+    }
+
+    private void updateDashboardValues() {
+        // Logic to update dashboard totals, counts, etc.
+    }
+
     @FXML
     public void initialize() throws SQLException, ClassNotFoundException {
         setLineChart();
@@ -183,7 +197,7 @@ public class DashPageController {
 
 
 
-    public void setFromBill() {
+    public  void setFromBill() {
         double totalRevenue=0;
         int totalOrders=0;
         String revenueQuery = "SELECT SUM(totalAmount) AS totalRevenue FROM bill WHERE DATE(orderDate) = ?";
